@@ -1,23 +1,23 @@
 import axios from "axios";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const [email, setEmail] = useState("");
-
+  const navigate = useNavigate();
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
   const [pass, setPass] = useState("");
 
-  const [token, setToken] = useState([]);
-  useEffect(() => {
-    localStorage.setItem("token", JSON.stringify(token));
-  }, [token]);
-
   const handlePass = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPass(e.target.value);
+  };
+
+  const navigateDashboard = () => {
+    navigate("/dashboard");
   };
 
   function register() {
@@ -31,26 +31,37 @@ function Home() {
       },
     });
   }
-  function login() {
-    axios({
-      method: "post",
-      url: "http://localhost:3001/login",
-      headers: {},
-      data: {
-        email: email,
-        password: pass,
+  const data = JSON.stringify({
+    email: email,
+    password: pass,
+  });
+
+  const Register = async () => {
+    const res = await axios.post("http://localhost:3001/register", data, {
+      headers: {
+        "Content-Type": "application/json",
       },
-    }).then((response) => {
-      console.log(response.data.token);
-      setToken(response.data.token);
-      console.log(response.data.token.length);
-      // if (response.data === "E BINE FRATE") {
-      //   setLogged(response.data);
-      // } else if (response.data !== "E BINE FRATE") {
-      //   setLogged(response.data);
-      // }
     });
-  }
+  };
+
+  const Login = async () => {
+    const res = await axios
+      .post("http://localhost:3001/login", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        console.log(res.data.token);
+        localStorage.setItem("token", JSON.stringify(res.data.token));
+        if (JSON.parse(localStorage.getItem("token")!) !== null) {
+          navigateDashboard();
+        } else {
+          console.log("frate, nu merge aici");
+        }
+      });
+  };
+
   return (
     <div className="App">
       {/* REGISTER PAGE*/}
@@ -61,7 +72,7 @@ function Home() {
       </form>
       <button
         onClick={() => {
-          register();
+          Register();
         }}
       >
         register
@@ -76,15 +87,11 @@ function Home() {
       </form>
       <button
         onClick={() => {
-          login();
+          Login();
         }}
       >
         login
       </button>
-      <span>.</span>
-      <span>.</span>
-      <span>.</span>
-      <span>{token}</span>
     </div>
   );
 }
