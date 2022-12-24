@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import { useCookies } from "react-cookie";
 
 function Dashboard() {
   //   const [token, setToken] = useState(()=>{
@@ -8,12 +7,14 @@ function Dashboard() {
   //     setToken(initialValue)
   //   });
   // const saved = JSON.parse(localStorage.getItem("token")!);
-  const saved = JSON.parse(localStorage.getItem("token")!);
-  console.log(saved);
+  // const saved = JSON.parse(localStorage.getItem("token")!);
   window.onbeforeunload = () => {
     localStorage.clear();
   };
-  if (saved?.length !== 0 && saved !== null && saved !== undefined) {
+  const [cookies, setCookie] = useCookies();
+
+  // if (saved?.length !== 0 && saved !== null && saved !== undefined) {
+  if (cookies.token) {
     return (
       <div>
         <h1>bravo ma , esti logat</h1>
