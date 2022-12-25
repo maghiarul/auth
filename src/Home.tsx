@@ -5,43 +5,45 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
 function Home() {
+  // information like email and password handling
+
   const [email, setEmail] = useState("");
-  const navigate = useNavigate();
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  const [cookies, setCookie] = useCookies(["token"]);
-  // const [token, setToken] = useState("");
-
-  const handleCookie = () => {
-    setCookie("token", JSON.parse(localStorage.getItem("token")!), {
-      path: "/",
-      maxAge: 5,
-    });
-  };
-  const navigateDashboard = () => {
-    navigate("/dashboard");
-  };
   const [pass, setPass] = useState("");
 
   const handlePass = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPass(e.target.value);
   };
 
-  
+  ////////////////////////////////////
 
-  // function register() {
-  //   axios({
-  //     method: "post",
-  //     url: "http://localhost:3001/register",
-  //     headers: {},
-  //     data: {
-  //       email: email,
-  //       password: pass,
-  //     },
-  //   });
-  // }
+  //navigation through the website
+
+  const navigate = useNavigate();
+  const navigateDashboard = () => {
+    navigate("/dashboard");
+  };
+
+  //////////////////////////////
+
+  //cookies and handling cookies
+
+  const [cookies, setCookie] = useCookies(["token"]);
+
+  const handleCookie = () => {
+    setCookie("token", JSON.parse(localStorage.getItem("token")!), {
+      path: "/",
+      maxAge: 3600,
+    });
+  };
+
+  /////////////////////////////
+
+  // login and register requests
+
   const data = JSON.stringify({
     email: email,
     password: pass,
@@ -72,7 +74,7 @@ function Home() {
         }
       });
   };
-
+  //////////////////////////////
   return (
     <div className="App">
       {/* REGISTER PAGE*/}

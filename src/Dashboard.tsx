@@ -1,19 +1,11 @@
 import { useCookies } from "react-cookie";
 
 function Dashboard() {
-  //   const [token, setToken] = useState(()=>{
-  //     const saved:any = localStorage.getItem("token")
-  //     const initialValue = JSON.parse(saved);
-  //     setToken(initialValue)
-  //   });
-  // const saved = JSON.parse(localStorage.getItem("token")!);
-  // const saved = JSON.parse(localStorage.getItem("token")!);
   window.onbeforeunload = () => {
     localStorage.clear();
   };
   const [cookies, setCookie] = useCookies();
 
-  // if (saved?.length !== 0 && saved !== null && saved !== undefined) {
   if (cookies.token) {
     return (
       <div>

@@ -1,4 +1,4 @@
-# auth v1.2 
+# auth v1.2.2
 
 ## `working`
 ### added cookies
