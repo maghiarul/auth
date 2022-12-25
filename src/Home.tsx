@@ -20,16 +20,16 @@ function Home() {
       maxAge: 5,
     });
   };
-
+  const navigateDashboard = () => {
+    navigate("/dashboard");
+  };
   const [pass, setPass] = useState("");
 
   const handlePass = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPass(e.target.value);
   };
 
-  const navigateDashboard = () => {
-    navigate("/dashboard");
-  };
+  
 
   // function register() {
   //   axios({
