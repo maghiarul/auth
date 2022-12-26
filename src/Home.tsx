@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
@@ -75,6 +75,14 @@ function Home() {
       });
   };
   //////////////////////////////
+
+  /// constantly watches so a loggedIn user can't go back to login/register page
+  useEffect(() => {
+    if (cookies.token) {
+      navigateDashboard();
+    }
+  });
+
   return (
     <div className="App">
       {/* REGISTER PAGE*/}

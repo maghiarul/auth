@@ -1,3 +1,5 @@
-# auth v1.2.3
+# auth v1.3
 
-## cleaned the code a bit
+### 1. made it so if the user is already logged in, it can't access register/login page
+
+### 2. added sign out button

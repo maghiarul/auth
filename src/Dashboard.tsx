@@ -1,15 +1,23 @@
 import { useCookies } from "react-cookie";
+import { useEffect } from "react";
 
 function Dashboard() {
   window.onbeforeunload = () => {
     localStorage.clear();
   };
-  const [cookies, setCookie] = useCookies();
+  const [cookies, setCookie, removeCookie] = useCookies();
 
   if (cookies.token) {
     return (
       <div>
         <h1>bravo ma , esti logat</h1>
+        <button
+          onClick={() => {
+            removeCookie("token", { path: "/", sameSite: 'none'});
+          }}
+        >
+          Sign out
+        </button>
       </div>
     );
   } else {
