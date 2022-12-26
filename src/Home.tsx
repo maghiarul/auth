@@ -36,7 +36,9 @@ function Home() {
   const handleCookie = () => {
     setCookie("token", JSON.parse(localStorage.getItem("token")!), {
       path: "/",
-      maxAge: 3600,
+      maxAge: 10,
+      secure: true,
+      sameSite: "none",
     });
   };
 
@@ -67,10 +69,8 @@ function Home() {
       .then((res) => {
         localStorage.setItem("token", JSON.stringify(res.data.token));
         handleCookie();
-        if (JSON.parse(localStorage.getItem("token")!) !== null) {
+        if (cookies.token) {
           navigateDashboard();
-        } else {
-          console.log("frate, nu merge aici");
         }
       });
   };

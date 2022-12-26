@@ -1,4 +1,3 @@
-# auth v1.2.2
+# auth v1.2.3
 
-## `working`
-### added cookies
+## cleaned the code a bit
