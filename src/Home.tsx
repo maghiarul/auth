@@ -31,10 +31,16 @@ function Home() {
 
   //cookies and handling cookies
 
-  const [cookies, setCookie] = useCookies(["token"]);
+  const [cookies, setCookie] = useCookies(["token", "email"]);
 
   const handleCookie = () => {
     setCookie("token", JSON.parse(localStorage.getItem("token")!), {
+      path: "/",
+      maxAge: 10,
+      secure: true,
+      sameSite: "none",
+    });
+    setCookie("email", JSON.parse(localStorage.getItem("email")!), {
       path: "/",
       maxAge: 10,
       secure: true,
@@ -68,6 +74,7 @@ function Home() {
       })
       .then((res) => {
         localStorage.setItem("token", JSON.stringify(res.data.token));
+        localStorage.setItem("email", JSON.stringify(email))
         handleCookie();
         if (cookies.token) {
           navigateDashboard();

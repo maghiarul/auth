@@ -4,12 +4,12 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import Home from './Home';
 import { CookiesProvider } from "react-cookie";
+import './style.css'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
     <CookiesProvider>
     <BrowserRouter>
       <Routes>
@@ -18,5 +18,4 @@ root.render(
       </Routes>
     </BrowserRouter>
     </CookiesProvider>
-  </React.StrictMode>
 );

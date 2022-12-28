@@ -1,0 +1,16 @@
+.product{
+    display: flex;
+    flex-direction: row;
+}
+
+.product span{
+    padding: 10px;
+}
+
+.middle{
+    text-align: center;
+}
+
+.colored {
+    color: greenyellow
+}

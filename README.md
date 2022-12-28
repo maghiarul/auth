@@ -1,5 +1,3 @@
-# auth v1.3
+# auth v1.4
 
-### 1. made it so if the user is already logged in, it can't access register/login page
-
-### 2. added sign out button
+### 1. made it so each user can see it's own products
