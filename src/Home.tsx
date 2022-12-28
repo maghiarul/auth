@@ -36,13 +36,13 @@ function Home() {
   const handleCookie = () => {
     setCookie("token", JSON.parse(localStorage.getItem("token")!), {
       path: "/",
-      maxAge: 10,
+      maxAge: 3600,
       secure: true,
       sameSite: "none",
     });
     setCookie("email", JSON.parse(localStorage.getItem("email")!), {
       path: "/",
-      maxAge: 10,
+      maxAge: 3600,
       secure: true,
       sameSite: "none",
     });
