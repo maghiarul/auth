@@ -1,4 +1,3 @@
-# auth v1.4.1
+# auth v1.5
 
-### 1. you can now add , delete products
-### i just need to figure out how to update the products array when adding a product.
+### i'm too lazy to write all the changes, but it's all good

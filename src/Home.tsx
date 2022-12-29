@@ -40,7 +40,7 @@ function Home() {
       secure: true,
       sameSite: "none",
     });
-    setCookie("email", JSON.parse(localStorage.getItem("email")!), {
+    setCookie("email", email, {
       path: "/",
       maxAge: 3600,
       secure: true,
@@ -58,7 +58,8 @@ function Home() {
   });
 
   const Register = async () => {
-    const res = await axios.post("http://localhost:3001/register", data, {
+    // eslint-disable-next-line
+    const res = await axios.post("http://localhost:4000/register", data, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -66,15 +67,15 @@ function Home() {
   };
 
   const Login = async () => {
+    // eslint-disable-next-line
     const res = await axios
-      .post("http://localhost:3001/login", data, {
+      .post("http://localhost:4000/login", data, {
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then((res) => {
         localStorage.setItem("token", JSON.stringify(res.data.token));
-        localStorage.setItem("email", JSON.stringify(email))
         handleCookie();
         if (cookies.token) {
           navigateDashboard();
@@ -90,13 +91,23 @@ function Home() {
     }
   });
 
+  ///products array
+
+  const [p, setP] = useState<any[]>([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:4000/product-list").then((res) => {
+      setP(res.data);
+    });
+  });
+
   return (
     <div className="App">
       {/* REGISTER PAGE*/}
       <h1>Register</h1>
       <form>
-        <input placeholder="email" onChange={handleEmail}></input>
-        <input placeholder="pass" onChange={handlePass}></input>
+        <input required placeholder="username" onChange={handleEmail}></input>
+        <input required placeholder="pass" onChange={handlePass}></input>
       </form>
       <button
         onClick={() => {
@@ -110,8 +121,8 @@ function Home() {
 
       <h1>Login</h1>
       <form>
-        <input placeholder="email" onChange={handleEmail}></input>
-        <input placeholder="pass" onChange={handlePass}></input>
+        <input required placeholder="username" onChange={handleEmail}></input>
+        <input required placeholder="pass" onChange={handlePass}></input>
       </form>
       <button
         onClick={() => {
@@ -120,6 +131,23 @@ function Home() {
       >
         login
       </button>
+
+      {/* Product page */}
+      <h1 className="middle">Products</h1>
+      {p.map((pr) => {
+        return (
+          <div className="product">
+            <hr></hr>
+            <span className="tags">Name: </span>
+            <span>{pr.product_name}</span>
+            <span className="tags">Price:</span>
+            <span>{pr.product_price}</span>
+            <span className="tags">Vendor:</span>
+            <span>{pr.product_vendor}</span>
+            <hr></hr>
+          </div>
+        );
+      })}
     </div>
   );
 }

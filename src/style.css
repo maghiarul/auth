@@ -1,16 +1,21 @@
-.product{
-    display: flex;
-    flex-direction: row;
+.product {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
 }
 
-.product span{
-    padding: 10px;
+.product span {
+  padding: 10px;
 }
 
-.middle{
-    text-align: center;
+.tags {
+  font-weight: 800;
+}
+
+.middle {
+  text-align: center;
 }
 
 .colored {
-    color: greenyellow
+  color: rgb(244, 82, 82);
 }
