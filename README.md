@@ -1,3 +1,3 @@
-# auth v1.5
+# auth v1.5.1
 
-### i'm too lazy to write all the changes, but it's all good
+### finally managed to get rid of using localStorage

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
 function Home() {
+  var t = "";
   // information like email and password handling
 
   const [email, setEmail] = useState("");
@@ -34,7 +35,7 @@ function Home() {
   const [cookies, setCookie] = useCookies(["token", "email"]);
 
   const handleCookie = () => {
-    setCookie("token", JSON.parse(localStorage.getItem("token")!), {
+    setCookie("token", t, {
       path: "/",
       maxAge: 3600,
       secure: true,
@@ -66,6 +67,7 @@ function Home() {
     });
   };
 
+
   const Login = async () => {
     // eslint-disable-next-line
     const res = await axios
@@ -75,7 +77,7 @@ function Home() {
         },
       })
       .then((res) => {
-        localStorage.setItem("token", JSON.stringify(res.data.token));
+        t = res.data.token;
         handleCookie();
         if (cookies.token) {
           navigateDashboard();
@@ -104,36 +106,40 @@ function Home() {
   return (
     <div className="App">
       {/* REGISTER PAGE*/}
-      <h1>Register</h1>
-      <form>
-        <input required placeholder="username" onChange={handleEmail}></input>
-        <input required placeholder="pass" onChange={handlePass}></input>
-      </form>
-      <button
-        onClick={() => {
-          Register();
-        }}
-      >
-        register
-      </button>
+      <div className="fm">
+        <h1>Register</h1>
+        <form className="forms">
+          <input required placeholder="username" onChange={handleEmail}></input>
+          <input required placeholder="pass" onChange={handlePass}></input>
+        </form>
+        <button
+          onClick={() => {
+            Register();
+          }}
+        >
+          register
+        </button>
+      </div>
 
       {/* LOGIN PAGE*/}
 
-      <h1>Login</h1>
-      <form>
-        <input required placeholder="username" onChange={handleEmail}></input>
-        <input required placeholder="pass" onChange={handlePass}></input>
-      </form>
-      <button
-        onClick={() => {
-          Login();
-        }}
-      >
-        login
-      </button>
-
+      <div className="fm">
+        <h1>Login</h1>
+        <form className="forms">
+          <input required placeholder="username" onChange={handleEmail}></input>
+          <input required placeholder="pass" onChange={handlePass}></input>
+        </form>
+        <button
+          onClick={() => {
+            Login();
+          }}
+        >
+          login
+        </button>
+      </div>
       {/* Product page */}
       <h1 className="middle">Products</h1>
+      <div className="product-list">
       {p.map((pr) => {
         return (
           <div className="product">
@@ -148,6 +154,7 @@ function Home() {
           </div>
         );
       })}
+      </div>
     </div>
   );
 }

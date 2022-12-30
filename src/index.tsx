@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import Home from './Home';
 import { CookiesProvider } from "react-cookie";
-import './style.css'
+import './style.scss'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

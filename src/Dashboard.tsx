@@ -70,7 +70,7 @@ function Dashboard() {
 
   // {\__/}
   // (●_●)
-  // ( >🌮 Want a taco?
+  // ( >🌮 Want a taco? 
 
   /// Get all the products from the database based on email
   useEffect(() => {
@@ -124,6 +124,7 @@ function Dashboard() {
           Sign out
         </button>
         <h2 className="middle">Your current products</h2>
+        <div className="product-list">
         {products.map((product) => {
           return (
             <div className="product">
@@ -151,6 +152,7 @@ function Dashboard() {
             </div>
           );
         })}
+        </div>
         <hr></hr>
         <h1>Add your desired product</h1>
         <form>
