@@ -1,3 +1,3 @@
-# auth v1.5.1
+# auth v1.5.2
 
-### finally managed to get rid of using localStorage
+### removed vendor `<span>` in Dashboard.tsx 

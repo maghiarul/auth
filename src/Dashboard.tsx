@@ -4,13 +4,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
-  /// Clearing the localstorage after leaving
-
-  window.onbeforeunload = () => {
-    localStorage.clear();
-  };
-
-  ///////////////////////////////////////////
 
   /// Handling product_name, product_price
 
@@ -133,8 +126,6 @@ function Dashboard() {
               <span>{product.product_name}</span>
               <span className="tags">Price:</span>
               <span>{product.product_price}</span>
-              <span className="tags">Vendor:</span>
-              <span>{product.product_vendor}</span>
               <button
                 onClick={() => {
                   const id = JSON.stringify({ id: product.id });
